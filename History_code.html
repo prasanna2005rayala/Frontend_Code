@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simulation UI</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- React -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body class="bg-gray-100 p-6">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    /* ---- SimulationHistory (Converted from SimulationHistory.js) ---- */
+    function SimulationHistory({ simulations }) {
+      if (simulations.length === 0) {
+        return <p className="text-gray-500">No simulations run yet</p>;
+      }
+
+      return (
+        <div className="mt-6">
+          <h2 className="text-2xl font-bold mb-4">Simulation History</h2>
+
+          {simulations.map((sim, index) => (
+            <div
+              key={index}
+              className="bg-white border border-gray-300 p-4 rounded mb-3"
+            >
+              <p className="font-semibold">Simulation {index + 1}</p>
+              <p>Duration: {sim.duration}</p>
+              <p>Monthly Contribution: {sim.monthlyContribution}</p>
+              <p>Projected Value: {sim.projectedValue}</p>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    /* ---- App (Converted from Stimulations.js) ---- */
+    function App() {
+      const simulations = [
+        {
+          duration: "10 years",
+          monthlyContribution: "₹5,000",
+          projectedValue: "₹12,00,000",
+        },
+        {
+          duration: "15 years",
+          monthlyContribution: "₹7,000",
+          projectedValue: "₹22,50,000",
+        },
+      ];
+
+      return (
+        <div className="max-w-2xl mx-auto">
+          
+          {/* Simulation Result */}
+          <h1 className="text-3xl font-bold mb-4">Simulation Result</h1>
+
+          <div className="bg-white border-2 border-black p-5 rounded mb-6">
+            <p className="font-semibold mb-2">Latest Simulation</p>
+            <p>Duration: 10 years</p>
+            <p>Monthly Contribution: ₹5,000</p>
+            <p>Projected Value: ₹12,00,000</p>
+          </div>
+
+          {/* Simulation History BELOW */}
+          <SimulationHistory simulations={simulations} />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+
+</body>
+</html>
